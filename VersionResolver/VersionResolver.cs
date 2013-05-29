@@ -14,18 +14,10 @@ namespace VersionResolver
       
       private static readonly IDictionary<string, string> _versionsDictionary = new Dictionary<string, string>();
 
-      private static readonly DictionaryWithDefault<string, string> _versions = 
-        new DictionaryWithDefault<string, string>(_versionsDictionary)
-          {
-            DefaultValue = ""
-          };
+      private static readonly DictionaryWithDefault _versions =
+        new DictionaryWithDefault(_versionsDictionary);
 
-      public static string DefaultValue {
-        get { return _versions.DefaultValue; }
-        set { _versions.DefaultValue = value; }
-      }
-
-      public static DictionaryWithDefault<string, string> Versions {
+      public static DictionaryWithDefault Versions {
         get { return _versions; }
       }
 
@@ -73,23 +65,21 @@ namespace VersionResolver
         }
       }
 
-      public class DictionaryWithDefault<TKey, TValue>
+      public class DictionaryWithDefault
       {
-        private readonly IDictionary<TKey, TValue> _dictionary;
+        private readonly IDictionary<string, string> _dictionary;
 
-        public DictionaryWithDefault(IDictionary<TKey, TValue> dictionary)
+        public DictionaryWithDefault(IDictionary<string, string> dictionary)
         {
           _dictionary = dictionary;
         }
         
-        public TValue DefaultValue { get; set; }
-
-        public TValue this[TKey key]
+        public string this[string key, string defaultValue = ""]
         {
           get
           {
-            TValue value;
-            return _dictionary.TryGetValue(key, out value) ? value : DefaultValue;
+            string value;
+            return _dictionary.TryGetValue(key, out value) ? value : defaultValue;
           }
         }
       }
