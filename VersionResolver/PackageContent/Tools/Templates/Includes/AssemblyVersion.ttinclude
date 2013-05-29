@@ -1,0 +1,29 @@
+﻿<#@ assembly name="VersionResolver.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="VersionResolver" #>
+<#
+	const string VersionsXmlFile = "versions.xml";
+	const string RevisionsXmlFile = "revisions.xml";
+	var projectDir = Host.ResolvePath(".");
+	var solutionDir = Host.ResolvePath("..");
+	VersionResolver.LoadFiles(
+		Path.Combine(solutionDir, VersionsXmlFile), 
+		Path.Combine(solutionDir, RevisionsXmlFile)
+		Path.Combine(projectDir, VersionsXmlFile), 
+		Path.Combine(projectDir, RevisionsXmlFile),
+	);
+#>
+using System.Reflection;
+
+[assembly: AssemblyVersion("<#=VersionResolver.BuildAssemblyVersion("MajorVersion", "MinorVersion", "Build", "Revision")#>")]
+[assembly: AssemblyFileVersion("<#=VersionResolver.BuildAssemblyVersion("MajorVersion", "MinorVersion", "Build", "Revision")#>")]
+[assembly: AssemblyInformationalVersion("<#=VersionResolver.BuildAssemblyVersion("MajorVersion", "MinorVersion", "Build", "RevisionDetailed")#>")]
+[assembly: AssemblyCompany("<#=VersionResolver.Versions["Company"]#>")]
+[assembly: AssemblyProduct("<#=VersionResolver.Versions["Product"]#>")]
+[assembly: AssemblyCopyright("<#=VersionResolver.Versions["Copyright"]#>")]
+[assembly: AssemblyTrademark("<#=VersionResolver.Versions["Trademark"]#>")]
+[assembly: AssemblyCulture("<#=VersionResolver.Versions["Culture"]#>")]

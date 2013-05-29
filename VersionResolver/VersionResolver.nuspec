@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>VersionResolver</id>
+        <version>$version$</version>
+        <title>VersionResolver</title>
+        <authors>GennadyGS</authors>
+        <owners />
+        <projectUrl>https://bitbucket.org/GennadyGS/versionresolver</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Package for automation of assembly versioning</description>
+        <language>en-US</language>
+    </metadata>
+	<files>
+	  <file src="PackageContent\tools\**\*.*" target="tools\net40" /> 
+	  <file src="PackageContent\content\**\*.*" target="content" /> 
+	</files>
+</package>
