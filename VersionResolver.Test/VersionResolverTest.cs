@@ -30,8 +30,7 @@ namespace VersionResolver.Test
     public void TestVersionsDefault()
     {
       const string defaultValue = "Default";
-      VersionResolver.DefaultValue = defaultValue;
-      Assert.AreEqual(defaultValue, VersionResolver.Versions["UnexistingProperty"]);
+      Assert.AreEqual(defaultValue, VersionResolver.Versions["UnexistingProperty", defaultValue]);
     }
 
     [TestMethod]
