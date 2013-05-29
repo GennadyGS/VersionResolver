@@ -28,10 +28,10 @@ namespace VersionResolver
         string revisionVersionName)
       {
         return String.Format("{0}.{1}.{2}.{3}", 
-           Versions[majorVersionName],
-           Versions[minorVersionName], 
-           Versions[buildVersionName], 
-           Versions[revisionVersionName]
+           Versions[majorVersionName, "1"],
+           Versions[minorVersionName, "0"],
+           Versions[buildVersionName, "0"],
+           Versions[revisionVersionName, "0"]
         );
       }
 
