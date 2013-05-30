@@ -12,9 +12,9 @@
 	var solutionDir = Host.ResolvePath("..");
 	VersionResolver.LoadFiles(
 		Path.Combine(solutionDir, VersionsXmlFile), 
-		Path.Combine(solutionDir, RevisionsXmlFile)
+		Path.Combine(solutionDir, RevisionsXmlFile),
 		Path.Combine(projectDir, VersionsXmlFile), 
-		Path.Combine(projectDir, RevisionsXmlFile),
+		Path.Combine(projectDir, RevisionsXmlFile)
 	);
 #>
 using System.Reflection;
