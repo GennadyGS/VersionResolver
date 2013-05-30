@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="$(MSBuildExtensionsPath)\Incom\VisualStudio\Incom.VisualStudio.Targets"/>
+	<Import Project="$(MSBuildExtensionsPath)\Incom\Common\Incom.MSB.Targets"/>
 	<Import Project="$(MSBuildExtensionsPath)\Incom\Git\Incom.Git.Targets"/>
-	<PropertyGroup>
-		<VcsType>git</VcsType>
-	</PropertyGroup>
 	<ItemGroup>
-		<VsProjects Include="$(MSBuildThisFileDirectory)\**\*.csproj"/>
+		<msb Include="$(MSBuildThisFileDirectory)\**\*.csproj"/>
 	</ItemGroup>
 </Project>
