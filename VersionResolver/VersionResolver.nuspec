@@ -12,7 +12,7 @@
         <language>en-US</language>
     </metadata>
 	<files>
-	  <file src="PackageContent\tools\**\*.*" target="tools\net40" /> 
+	  <file src="PackageContent\tools\**\*.*" target="tools" /> 
 	  <file src="PackageContent\content\**\*.*" target="content" /> 
 	</files>
 </package>
