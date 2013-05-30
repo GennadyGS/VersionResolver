@@ -1,6 +1,7 @@
 /TestResults/
 bin/
 obj/
+/packages/*
 *.suo
 *.user
-Build.log.*
+Build*.log.*
