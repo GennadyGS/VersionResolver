@@ -3,6 +3,6 @@
 	<Import Project="$(MSBuildExtensionsPath)\Incom\Common\Incom.MSB.Targets"/>
 	<Import Project="$(MSBuildExtensionsPath)\Incom\Git\Incom.Git.Targets"/>
 	<ItemGroup>
-		<msb Include="$(MSBuildThisFileDirectory)\**\*.csproj"/>
+		<msb Include="$(MSBuildThisFileDirectory)\*\*.csproj"/>
 	</ItemGroup>
 </Project>
