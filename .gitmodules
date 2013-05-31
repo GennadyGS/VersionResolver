@@ -1,3 +1,6 @@
 [submodule "_Scripts"]
 	path = _Scripts
 	url = ssh://git@bitbucket.org/dpr-incom/ci_scripts.git
+[submodule "_MSBuildExtensions"]
+	path = _MSBuildExtensions
+	url = ssh://git@bitbucket.org/dpr-incom/msbuildextensions.git
