@@ -5,4 +5,7 @@
 	<ItemGroup>
 		<VsProjects Include="$(MSBuildThisFileDirectory)\*\*.csproj"/>
 	</ItemGroup>
+	<Target Name="PublishPackage">
+		<MSBuild Projects="VersionResolver\VersionResolver.csproj" Targets="PublishPackage" StopOnFirstFailure="!$(ContinueOnError)"/>
+	</Target>
 </Project>
