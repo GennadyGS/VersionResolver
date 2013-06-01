@@ -52,9 +52,13 @@
         
         <!-- Commands -->
         <RestoreCommand>$(NuGetCommand) install "$(PackagesConfig)" -source "$(PackageSources)"  $(NonInteractiveSwitch) $(RequireConsentSwitch) -solutionDir "$(SolutionDir) " </RestoreCommand>
-        <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties Configuration=$(Configuration) $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -symbols</BuildCommand>
+        <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties "Configuration=$(Configuration);Platform=$(Platform)" $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -symbols</BuildCommand>
 
-        <!-- We need to ensure packages are restored prior to assembly resolve -->
+        <PublishCommand>$(NuGetExePath) push $(PackageOutputDir)\$(MSBuildProjectName).*.nupkg</PublishCommand>
+        <PublishCommand Condition="$(PublishPackageSource) != '' ">$(PublishCommand) -Source $(PublishPackageSource)</PublishCommand>
+        <PublishCommand Condition="$(PublishPackageApiKey) != '' ">$(PublishCommand) -ApiKey $(PublishPackageApiKey)</PublishCommand>
+
+    <!-- We need to ensure packages are restored prior to assembly resolve -->
         <BuildDependsOn Condition="$(RestorePackages) == 'true'">
             RestorePackages;
             $(BuildDependsOn);
@@ -65,6 +69,7 @@
             $(BuildDependsOn);
             BuildPackage;
         </BuildDependsOn>
+
     </PropertyGroup>
 
     <Target Name="CheckPrerequisites">
@@ -96,6 +101,15 @@
               Condition=" '$(OS)' != 'Windows_NT' " />
               
         <Exec Command="$(BuildCommand)"
+              LogStandardErrorAsError="true"
+              Condition=" '$(OS)' == 'Windows_NT' " />
+    </Target>
+    
+    <Target Name="PublishPackage" DependsOnTargets="BuildPackage">
+        <Exec Command="$(PublishCommand)" 
+              Condition=" '$(OS)' != 'Windows_NT' " />
+              
+        <Exec Command="$(PublishCommand)"
               LogStandardErrorAsError="true"
               Condition=" '$(OS)' == 'Windows_NT' " />
     </Target>
