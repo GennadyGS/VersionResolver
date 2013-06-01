@@ -2,6 +2,7 @@
 bin/
 obj/
 /packages/*
+/revisions.xml
 *.suo
 *.user
 Build*.log.*
