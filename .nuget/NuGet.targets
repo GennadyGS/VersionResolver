@@ -105,7 +105,7 @@
               Condition=" '$(OS)' == 'Windows_NT' " />
     </Target>
     
-    <Target Name="PublishPackage" DependsOnTargets="BuildPackage">
+    <Target Name="PublishPackage" DependsOnTargets="Build; BuildPackage">
         <Exec Command="$(PublishCommand)" 
               Condition=" '$(OS)' != 'Windows_NT' " />
               
